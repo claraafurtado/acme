@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>info</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white">
+    <div class="h-screen flex flex-col justify-center items-center bg-black">
+        <div class="absolute left-0 h-full bg-red-600 w-40"></div>
+        <h1 id="nome" class="text-6xl font-bold mb-8 text-red-600"></h1>
+        <div class="bg-gray-500 rounded-lg p-8 max-w-4xl w-1/2 flex items-center">
+            <div class="w-2/4">
+                <img src="" id="foto_capa" alt="" class="w-full max-w-full mb-12 mx-auto">
+            </div>
+            <div class="w-1/2 ml-12">
+                <p id="sinopse" class="text-lg mb-4"></p>
+                <p id="duracao" class="text-lg mb-4"></p>
+                <p id="data_lancamento" class="text-lg"></p>
+                <div class="flex justify-center">
+                    <button id="preco" class="bg-red-600 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                        Preço: R$ XX,XX 
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { getFilmesId } from "./filmes.js";
+
+        async function fetchFilme() {
+            const idFilme = new URLSearchParams(window.location.search).get('id');
+            const filmeAtual = await getFilmesId(idFilme);
+
+            const nome = document.getElementById('nome');
+            nome.textContent = filmeAtual.nome;
+
+            const sinopse = document.getElementById('sinopse');
+            sinopse.textContent = filmeAtual.sinopse;
+
+            const duracao = document.getElementById('duracao');
+            duracao.textContent = "Duração: " + filmeAtual.duracao.slice(11,19); // Apenas a duração crua
+
+            const data_lancamento = document.getElementById('data_lancamento');
+            const dataLancamento = new Date(filmeAtual.data_lancamento);
+            data_lancamento.textContent ="Data de Lançamento: " + dataLancamento.toLocaleDateString(); // Apenas a data crua
+
+            const foto_capa = document.getElementById('foto_capa');
+            foto_capa.src = filmeAtual.foto_capa;
+
+            const preco = document.getElementById('preco');
+            preco.textContent = "Preço: R$ " + filmeAtual.valor_unitario.toFixed(2); // Formatando o preço para 2 casas decimais
+
+            console.log(filmeAtual);
+        }
+
+        fetchFilme();
+    </script>
+</body>
+</html>

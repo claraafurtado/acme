@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/input.css">
+    <link rel="stylesheet" href="./src/output.css">
+    <script type="module" src="./filmes.js"></script>
+    <script type="module" src="./home.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ACME</title>
+    <style>
+       
+        .acme-text {
+            font-family: sans-serif'Roboto', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="h-screen w-screen bg-black overflow-x-hidden">
+    <header>
+        <div class="h-32 flex justify-between items-center p-12 bg-[#FD0D0D]">
+            <div class="flex align-center justify-center m-3 scroll-m-0">
+                <label class="relative block">
+                    <span class="sr-only">Search</span>
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-2 text-[#A1A1A1]">
+                        <svg id="searchButton" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="cursor-pointer w-8 h-8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                    </span>
+                    <input type="text" class="block w-96 h-10 rounded-full pl-12 bg-white text-black" placeholder="Procure aqui..." id="searchBar" />
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex flex-row align-center justify-center w-full h-full p-14">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 " id="container"></div>
+    </main>
+    <div class="absolute top-0 right-0 mt-4 mr-4 text-center">
+        <h1 class="text-5xl font-serif text-white acme-text font-bold">ACME</h1>
+        <h2 class="text-3xl font-serif text-gray-400">filmes</h2>
+    </div>
+    
+</body>
+
+</html>
